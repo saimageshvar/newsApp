@@ -29,7 +29,8 @@ class FeedsController < ApplicationController
     respond_to do |format|
       if @feed.save
         format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
-        format.json { render :show, status: :created, location: @feed }
+        #format.json { render :show, status: :created, location: @feed }
+        format.json { render :index, status: :created, location: @feed }
       else
         format.html { render :new }
         format.json { render json: @feed.errors, status: :unprocessable_entity }

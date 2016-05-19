@@ -1,0 +1,5 @@
+<% @feeds.each do |feed| %>
+<%= feed.name %> <%= link_to "add", '/add?feed_id=' + String(feed.id) %>
+<br>
+<% end %>
+<%= link_to "back", 'home/list' %>

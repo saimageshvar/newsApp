@@ -10,7 +10,13 @@ class HomeController < ApplicationController
 
 	def list
 		@categories=Category.all
-		@feeds=Feed.all
+		
+		@id = params[:select]
+		if @id.nil?
+			@feeds=Feed.where("id not in (select feed_id from subscribes where user_id=?)",current_member.id)
+		else
+			@feeds=Feed.where("c_id = ? and id not in (select feed_id from subscribes where user_id=?)", @id,current_member.id)	
+		end
 
 	end
 

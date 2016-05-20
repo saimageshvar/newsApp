@@ -3,36 +3,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Bootstrap Case</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
 </head>
 <body>
 
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">NewsApp</a>
-			</div>
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">My Feed</a></li>
-				<li><a href="home/list">New Feed</a></li>
-				<li><a href="home/logout">Sign Out</a></li>
-
+	<div class="row">
+		<div class="large-3 columns" style="position:fixed">
+			<ul class="vertical menu" data-drilldown style="width: 200px; " >
+				<li><a href="#"><h4>Categories</h4></a>
+					<ul class="menu vertical nested">
+						<li><%= link_to "All", '/home/list' %></li>
+						<% @categories.each do |category| %>
+						<li><%= link_to category.name, '/home/list?select=' + String(category.id) %></li>
+						<% end %>
+					</ul>
+				</li>
+				<li><a href="/home/list"><h4>New Feeds</h4></a></li>
+				<li><a href="#"><h4>Sign Out</h4></a></li>
 			</ul>
 		</div>
-	</nav>
-
-	<div class="container">
-		
+		<div class="large-9 columns">
+			<% @feeds.each do |feed| %>
+			<%= feed.name %>  <%= @categories.find(feed.c_id).name %> <br>
+			<iframe  id="feedwind_1941463657648834"  width="700" src="http://feed.mikle.com/widget/?rssmikle_url=<%=feed.url%>&rssmikle_frame_width=700&rssmikle_frame_height=400&frame_height_by_article=3&rssmikle_target=_blank&rssmikle_font=Arial%2C%20Helvetica%2C%20sans-serif&rssmikle_font_size=12&rssmikle_border=off&responsive=off&text_align=left&text_align2=left&corner=off&scrollbar=on&autoscroll=on&scrolldirection=up&scrollstep=3&mcspeed=20&sort=Off&rssmikle_title=on&rssmikle_title_bgcolor=%23993300&rssmikle_title_color=%23FFFFFF&rssmikle_item_bgcolor=%23FFFFFF&rssmikle_item_title_length=55&rssmikle_item_title_color=%23171330&rssmikle_item_border_bottom=on&rssmikle_item_description=title_only&item_link=off&rssmikle_item_description_length=150&rssmikle_item_description_color=%23666666&rssmikle_item_date=gl1&rssmikle_timezone=Etc%2FGMT&datetime_format=%25b%20%25e%2C%20%25Y%20%25l%3A%25M%20%25p&item_description_style=text%2Btn&item_thumbnail=full&item_thumbnail_selection=auto&article_num=15&rssmikle_item_podcast=off&iframe_id=feedwind_1941463657648834&" scrolling="no" name="rssmikle_frame" marginwidth="0" marginheight="0" vspace="0" hspace="0" frameborder="0"></iframe><div style="font-size:10px; text-align:center; width:700px;"></div> <%= link_to "delete", '/delete?feed_id=' + String(feed.id) %> <br> <br>
+			<% end %>
+		</div>
 	</div>
-	<% @feeds.each do |feed| %>
-	<%= feed.name %>  <%= @categories.find(feed.c_id).name %> <br>
-	<iframe  id="feedwind_1941463657648834"  width="700" src="http://feed.mikle.com/widget/?rssmikle_url=<%=feed.url%>&rssmikle_frame_width=700&rssmikle_frame_height=400&frame_height_by_article=3&rssmikle_target=_blank&rssmikle_font=Arial%2C%20Helvetica%2C%20sans-serif&rssmikle_font_size=12&rssmikle_border=off&responsive=off&text_align=left&text_align2=left&corner=off&scrollbar=on&autoscroll=on&scrolldirection=up&scrollstep=3&mcspeed=20&sort=Off&rssmikle_title=on&rssmikle_title_bgcolor=%23993300&rssmikle_title_color=%23FFFFFF&rssmikle_item_bgcolor=%23FFFFFF&rssmikle_item_title_length=55&rssmikle_item_title_color=%23171330&rssmikle_item_border_bottom=on&rssmikle_item_description=title_only&item_link=off&rssmikle_item_description_length=150&rssmikle_item_description_color=%23666666&rssmikle_item_date=gl1&rssmikle_timezone=Etc%2FGMT&datetime_format=%25b%20%25e%2C%20%25Y%20%25l%3A%25M%20%25p&item_description_style=text%2Btn&item_thumbnail=full&item_thumbnail_selection=auto&article_num=15&rssmikle_item_podcast=off&iframe_id=feedwind_1941463657648834&" scrolling="no" name="rssmikle_frame" marginwidth="0" marginheight="0" vspace="0" hspace="0" frameborder="0"></iframe><div style="font-size:10px; text-align:center; width:700px;"></div> <%= link_to "delete", '/delete?feed_id=' + String(feed.id) %> <br> <br>
-	<% end %>
 
 </body>
 </html>

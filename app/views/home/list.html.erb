@@ -2,27 +2,20 @@
 <head>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+
 </head>
 <body>
-	<script type="text/javascript">
-	$(document).ready(function() {
-		$(".select").select2();
-	});
-	</script>
 
-<%= form_tag("/display", method: "get") do %>
+
+	<%= form_tag("/display", method: "get") do %>
 	<%= select_tag "select", options_from_collection_for_select(@categories, "id", "name"), {:class => 'select',:onChange => 'this.form.submit()'} %>
 	<% end %>
 	
 
-	<script>
-	function func()
-	{
-		
-		//window.alert("asd");
-		
-
-	}
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$(".select").select2();
+	});
 	</script>
 </body>
 </html>

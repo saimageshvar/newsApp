@@ -1,8 +1,13 @@
 class HomeController < ApplicationController
 	def index
+		@categories=Category.all
 		if member_signed_in?
-			@feeds=Feed.where("id in (select feed_id from subscribes where user_id=?)",current_member.id)
-			@categories=Category.all
+			@id = params[:select]
+			if @id.nil?
+				@feeds=Feed.where("id  in (select feed_id from subscribes where user_id=?)",current_member.id)
+			else
+				@feeds=Feed.where("c_id = ? and id in (select feed_id from subscribes where user_id=?)", @id,current_member.id)	
+			end
 		else
 			redirect_to url_for(:controller => :members, :action => :sign_up)
 		end
@@ -19,6 +24,7 @@ class HomeController < ApplicationController
 		end
 
 	end
+
 
 	def display
 		id = params[:select]

@@ -30,18 +30,18 @@
 			<ul class="vertical menu" data-drilldown style="width: 200px; " >
 				<li><a href="#"><h4>Categories</h4></a>
 					<ul class="menu vertical nested">
-						<li><%= link_to "All", '/?select=0' %></li>
+						<li><%= link_to "All", '/?select=0'+ '&lang=' + String(@lang) %></li>
 						<% @categories.each do |category| %>
-						<li><%= link_to category.name, '/?select=' + String(category.id) %></li>
+						<li><%= link_to category.name, '/?select=' + String(category.id) + '&lang=' + String(@lang) %></li>
 						<% end %>
 					</ul>
 				</li>
 
 				<li><a href="#"><h4>Language</h4></a>
 					<ul class="menu vertical nested">
-						<li><%= link_to "All", '/lang=all' %></li>
+						<li><%= link_to "All", '/lang=all' + '&select=' + String(@id) %></li>
 						<% @languages.each do |language| %>
-						<li><%= link_to language.name, '/?lang=' + String(language.id) %></li>
+						<li><%= link_to language.name, '/?lang=' + String(language.name)  + '&select=' + String(@id) %></li>
 						<% end %>
 					</ul>
 				</li>

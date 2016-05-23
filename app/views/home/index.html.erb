@@ -39,9 +39,9 @@
 
 				<li><a href="#"><h4>Language</h4></a>
 					<ul class="menu vertical nested">
-						<li><%= link_to "All", '/lang=all' + '&select=' + String(@id) %></li>
+						<li><%= link_to "All", '/?select=' + String(@id) + '&lang=all' %></li>
 						<% @languages.each do |language| %>
-						<li><%= link_to language.name, '/?lang=' + String(language.name)  + '&select=' + String(@id) %></li>
+						<li><%= link_to language.name, '/?select=' + String(@id) +'&lang=' + String(language.name) %></li>
 						<% end %>
 					</ul>
 				</li>

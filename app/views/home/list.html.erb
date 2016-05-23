@@ -10,9 +10,17 @@
 			<ul class="vertical menu" data-drilldown style="width: 200px; " >
 				<li><a href="#"><h4>Categories</h4></a>
 					<ul class="menu vertical nested">
-						<li><%= link_to "All", '/home/list' %></li>
+						<li><%= link_to "All", '/list?select=0'+ '&lang=' + String(@lang) %></li>
 						<% @categories.each do |category| %>
-						<li><%= link_to category.name, '/home/list?select=' + String(category.id) %></li>
+						<li><%= link_to category.name, '/list?select=' + String(category.id) + '&lang=' + String(@lang) %></li>
+						<% end %>
+					</ul>
+				</li>
+				<li><a href="#"><h4>Language</h4></a>
+					<ul class="menu vertical nested">
+						<li><%= link_to "All", '/list?select=' + String(@id) + '&lang=all' %></li>
+						<% @languages.each do |language| %>
+						<li><%= link_to language.name, '/list?select=' + String(@id) +'&lang=' + String(language.name) %></li>
 						<% end %>
 					</ul>
 				</li>

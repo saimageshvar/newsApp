@@ -40,7 +40,7 @@ class HomeController < ApplicationController
 						@feeds=Feed.where("c_id = ? and id in (select feed_id from subscribes where user_id=?)", @id,current_member.id)	
 					else
 
-						@feeds=Feed.where("c_id = ? and id in (select feed_id from subscribes where user_id=? and lang_id=?)", @id,current_member.id,@language.ids[0])
+						@feeds=Feed.where("c_id = ? and id in (select feed_id from subscribes where user_id=? ) and lang_id=?", @id,current_member.id,@language.ids[0])
 
 					end
 				end
@@ -91,7 +91,7 @@ class HomeController < ApplicationController
 						@feeds=Feed.where("c_id = ? and id not in (select feed_id from subscribes where user_id=?)", @id,current_member.id)	
 					else
 
-						@feeds=Feed.where("c_id = ? and id not in (select feed_id from subscribes where user_id=? and lang_id=?)", @id,current_member.id,@language.ids[0])
+						@feeds=Feed.where("c_id = ? and id not in (select feed_id from subscribes where user_id=? ) and lang_id=?", @id,current_member.id,@language.ids[0])
 
 					end
 				end
@@ -113,6 +113,7 @@ class HomeController < ApplicationController
 		@subscribe=Subscribe.new
 		@subscribe.user_id=current_member.id
 		@subscribe.feed_id=feed_id
+		@subscribe.rate="f"
 		@subscribe.save
 		if @subscribe.save
 			redirect_to(:back)

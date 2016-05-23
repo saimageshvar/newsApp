@@ -7,38 +7,40 @@ class HomeController < ApplicationController
 				@feeds=Feed.where("id  in (select feed_id from subscribes where user_id=?)",current_member.id)
 			elsif params[:lang]==""
 				@id = params[:select]
-				if @lang=="all" or @lang=="" or @lang.nil?
-					if @id=="0" or @id=="" or @id.nil?
+				
+				if @id=="0" or @id=="" or @id.nil?
 
-						@feeds=Feed.where("id  in (select feed_id from subscribes where user_id=?)",current_member.id)
-					else
-						@feeds=Feed.where("c_id = ? and id in (select feed_id from subscribes where user_id=?)", @id,current_member.id)	
-					end
-					
+					@feeds=Feed.where("id  in (select feed_id from subscribes where user_id=?)",current_member.id)
 				else
-					@language=@languages.where("name=?",@lang)
-					if @id==0 or @id=="" or @id.nil?
-						@feeds=Feed.where("id  in (select feed_id from subscribes where user_id=?) and lang_id=?",current_member.id,@language.ids[0])
-					else
-						@feeds=Feed.where("c_id = ? and id in (select feed_id from subscribes where user_id=? and lang_id=?)", @id,current_member.id,@language.ids[0])	
-					end
+					@feeds=Feed.where("c_id = ? and id in (select feed_id from subscribes where user_id=?)", @id,current_member.id)	
 				end
+
 			elsif params[:select]==""
 				@lang = params[:lang]
-				if @id=="0" or @id==""
-					if @lang=="all" or @lang==""
-						@feeds=Feed.where("id  in (select feed_id from subscribes where user_id=?)",current_member.id)
-					else
-						@language=@languages.where("name=?",@lang)
-						@feeds=Feed.where("lang_id = ? and id in (select feed_id from subscribes where user_id=?)", @language.ids[0],current_member.id)	
-					end
-				else
-					@language=@languages.where("name='?'",@lang)
-					if @lang=="all" or @lang==""
 
+				if @lang=="all" or @lang==""
+					@feeds=Feed.where("id  in (select feed_id from subscribes where user_id=?)",current_member.id)
+				else
+					@language=@languages.where("name=?",@lang)
+					@feeds=Feed.where("lang_id = ? and id in (select feed_id from subscribes where user_id=?)", @language.ids[0],current_member.id)	
+				end
+			else
+				@id = params[:select]
+				@lang = params[:lang]
+				@language=@languages.where("name=?",@lang)
+				if @id=="0"
+					if @lang == "all"
 						@feeds=Feed.where("id  in (select feed_id from subscribes where user_id=?)",current_member.id)
 					else
-						@feeds=Feed.where("c_id = ? and id in (select feed_id from subscribes where user_id=? and lang_id=?)", @id,current_member.id,@language.ids[0])	
+						@feeds=Feed.where("lang_id = ? and id in (select feed_id from subscribes where user_id=?)", @language.ids[0],current_member.id)	
+					end	
+				else
+					if @lang == "all"	
+						@feeds=Feed.where("c_id = ? and id in (select feed_id from subscribes where user_id=?)", @id,current_member.id)	
+					else
+
+						@feeds=Feed.where("c_id = ? and id in (select feed_id from subscribes where user_id=? and lang_id=?)", @id,current_member.id,@language.ids[0])
+
 					end
 				end
 			end

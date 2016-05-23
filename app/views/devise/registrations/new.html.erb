@@ -4,12 +4,12 @@
     <div class="row">
       <div class="large-9 columns">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= devise_error_messages! %>
+        <h6><%= devise_error_messages! %></h6>
         <h2>Sign Up</h2>
         <div class="row">
          <div class="large-9 columns">
           <%= f.label :name %><br />
-          <%= f.text_field :name , autofocus: true%>
+          <%= f.text_field :name , autofocus: true, required: true%>
         </div>
       </div>
 
@@ -18,8 +18,20 @@
       <div class="row">
        <div class="large-9 columns">
         <%= f.label :email, class: "right inline"%><br />
-        <%= f.email_field :email %>
+        <%= f.email_field :email ,required: true,:onblur => 'validate(this.value)'%>
+        <p id="error"> </p>
       </div>
+
+      <script>
+      function validate(email)
+      {
+        var str = email;
+        var patt = new RegExp("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}");
+        var res = patt.test(str);
+        if(res==true)
+          document.getElementById("error").innerHTML="invalid email";
+      }
+      </script>
     </div>
 
     <div class="row">

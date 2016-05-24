@@ -7,7 +7,7 @@
 			@member.password = params[:member][:password]
 			@member.password_confirmation =params[:member][:password_confirmation]
 
-			if (/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/ =~ @member.email) == @member.email.length
+			if !(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/ =~ @member.email).nil?
 
 				@member.valid?
 				if @member.errors.blank?

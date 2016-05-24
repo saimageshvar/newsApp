@@ -10,28 +10,25 @@
   <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <div class="row">
-      
-      <div class="large-12 large-centered columns">
-        <div class="large-4 columns">
-          <p></p>
-        </div>
-        <div class="large-4 columns">
-          <h1>newsApp</h1>
-        </div>
-        <div class="large-4 columns">
-          <p></p>
-        </div>
+
+    <div class="large-12 large-centered columns">
+
+
+      <div class="title-bar" style="text-align:center">
+        <h2>newsApp</h2>
       </div>
-      
+
     </div>
+
+  </div>
 </head>
 
-<body>
+<body >
 
-    <%= yield %>
+  <%= yield %>
 
 
-<%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "application" %>
 
 
 </body>

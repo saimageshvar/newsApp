@@ -2,6 +2,7 @@ class HomeController < ApplicationController
 	def index
 		@categories=Category.all
 		@languages = Language.all
+		@subscribes= Subscribe.all
 		if member_signed_in?
 			if params[:lang].nil? and params[:select].nil?
 				@feeds=Feed.where("id  in (select feed_id from subscribes where user_id=?)",current_member.id)
@@ -44,6 +45,7 @@ class HomeController < ApplicationController
 
 					end
 				end
+
 			end
 		else
 			redirect_to url_for(:controller => :members, :action => :sign_up)
@@ -53,6 +55,7 @@ class HomeController < ApplicationController
 	def list
 		@categories=Category.all
 		@languages = Language.all
+		@starFeeds=Subscribe.where("star>0").pluck(:feed_id, :star).sort_by{ |feed_id, star| star }.reverse
 		if member_signed_in?
 			if params[:lang].nil? and params[:select].nil?
 				@feeds=Feed.where("id  not in (select feed_id from subscribes where user_id=?)",current_member.id)
@@ -113,7 +116,27 @@ class HomeController < ApplicationController
 		@subscribe=Subscribe.new
 		@subscribe.user_id=current_member.id
 		@subscribe.feed_id=feed_id
-		@subscribe.rate="f"
+		@subscribe.star=0
+		@subscribe.save
+		if @subscribe.save
+			redirect_to(:back)
+		end
+	end
+
+	def addFavorite
+		id = params[:id]
+		@subscribe=Subscribe.find(id)
+		@subscribe.star=1
+		@subscribe.save
+		if @subscribe.save
+			redirect_to(:back)
+		end
+	end
+
+	def removeFavorite
+		id = params[:id]
+		@subscribe=Subscribe.find(id)
+		@subscribe.star=0
 		@subscribe.save
 		if @subscribe.save
 			redirect_to(:back)

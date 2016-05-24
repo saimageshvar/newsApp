@@ -9,5 +9,4 @@ class Member < ActiveRecord::Base
   end
 
   has_many :feeds , :dependent => :destroy
-  ratyrate_rater
 end

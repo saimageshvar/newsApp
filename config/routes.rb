@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :subscribes
   post '/rate' => 'rater#create', :as => 'rate'
   devise_for :members
   resources :subscribes
@@ -16,6 +17,8 @@ Rails.application.routes.draw do
   get '/display' => 'home#display'
   get '/add' => 'home#add'
   get '/delete' => 'home#delete'
+  get '/addFavorite' => 'home#addFavorite'
+  get '/removeFavorite' => 'home#removeFavorite'
   get 'home/logout' => "home#logout"
   get 'members/sign_up' => 'members#sign_up'
   get '/members' => 'members#sign_up'  

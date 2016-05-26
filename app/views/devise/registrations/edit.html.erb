@@ -26,7 +26,7 @@
             </div>
             <div class="large-6 columns">
               <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true %>
+              <%= f.email_field :email, readonly: true , style: "background-color: transparent;" %>
             </div>
             <div class="large-3 columns" style="align-items:center">
               <p> </p>
@@ -41,7 +41,7 @@
             </div>
             <div class="large-6 columns">
               <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-              <%= f.password_field :password, autocomplete: "off" %>
+              <%= f.password_field :password, autocomplete: "off", autofocus: true  %>
             </div>
             <div class="large-3 columns" style="align-items:center">
               <p> </p>

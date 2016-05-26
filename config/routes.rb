@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get '/removeFavorite' => 'home#removeFavorite'
   get 'home/logout' => "home#logout"
   get 'members/sign_up' => 'members#sign_up'
-  get '/members' => 'members#sign_up'  
+  post 'registration/delete' => 'registration#delete'
   get 'list' => 'home#list'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

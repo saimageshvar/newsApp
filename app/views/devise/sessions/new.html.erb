@@ -25,7 +25,7 @@
             </div>
             <div class="large-6 columns">
               <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true %>
+              <%= f.email_field :email,required: true, autofocus: true %>
             </div>
             <div class="large-3 columns" style="align-items:center">
               <p> </p>
@@ -38,7 +38,7 @@
             </div>
             <div class="large-6 columns">
               <%= f.label :password %><br />
-              <%= f.password_field :password, autocomplete: "off" %>
+              <%= f.password_field :password,required: true,autocomplete: "off" %>
             </div>
             <div class="large-3 columns" style="align-items:center">
               <p> </p>

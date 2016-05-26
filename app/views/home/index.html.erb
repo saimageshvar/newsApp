@@ -11,6 +11,8 @@
 	
 
 	<div class="row">
+
+
 		
 		<div class="large-3 columns" style="position:fixed">
 			<ul class="vertical menu" data-drilldown style="width: 200px; " >
@@ -34,12 +36,14 @@
 				<hr>
 				<li><a href="/home/list"><h4>New Feeds</h4></a></li>
 				<hr>
+				<li><a href="/members/edit"><h4>Change my Password</h4></a></li>
+				<hr>
 				<li><a href="/home/logout"><h4>Sign Out</h4></a></li>
 			</ul>
 		</div>
 		<div class="large-9 columns">
 			<% if @feeds.empty? %>
-			<h2>Sorry!No feeds found</h2>
+			<h2>Hey! Get some feeds yo!</h2>
 			<% else %>
 			<% @categories.ids.each do |id| %>
 			<% cfeed = @feeds.where("c_id=?",id)%>
@@ -89,10 +93,10 @@
 			<br>
 			<% end %>
 		</div>
-			<% end %>
+		<% end %>
 
-			<% end %>
-			<% end %>
+		<% end %>
+		<% end %>
 
 	</div>
 

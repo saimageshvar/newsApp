@@ -41,8 +41,11 @@
 			<h2>Sorry!No feeds found</h2>
 			<% else %>
 			<% @categories.ids.each do |id| %>
-			<% @feeds.where("c_id=?",id).each do |feed| %>
-			<h2><%= feed.name %> | <%= @categories.find(feed.c_id).name %>  
+			<% cfeed = @feeds.where("c_id=?",id)%>
+			<% if !cfeed.empty? %>
+			<h2><%= @categories.find(id).name %></h2><div class="callout large">
+			<% cfeed.each do |feed| %>
+			<h2><%= feed.name %> 
 				<a href="/delete?feed_id=<%= feed.id %>">
 					<span style="float:right">
 						<%= image_tag "unlike.png",size: "32x30" %> 
@@ -64,7 +67,9 @@
 				</a>
 				<% end %>
 				
-			</h2> <br>
+			</h2> 
+			<hr>
+			<br>
 
 
 
@@ -82,11 +87,15 @@
 
 			<br>
 			<% end %>
-			<% end %>
-			<% end %>
 		</div>
+			<% end %>
+
+			<% end %>
+			<% end %>
 
 	</div>
+
+</div>
 
 
 

@@ -9,13 +9,16 @@
 
 			if !(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/ =~ @member.email).nil?
 
-				@member.valid?
-				if @member.errors.blank?
+				if @member.valid?
+					if @member.errors.blank?
 
-					@member.save
+						@member.save
 
-					redirect_to dashboard_path
+						redirect_to dashboard_path
+					end
+				else
 
+					redirect_to url_for(:controller => :registration, :action => :new)
 				end
 			else
 				redirect_to url_for(:controller => :home, :action => :index)

@@ -73,30 +73,35 @@
 						<% if @feeds.empty? %>
 						<li><h4>Sorry!No new feeds found</h4></li>
 						<% else %>
+
 						<% @categories.ids.each do |id| %>
 						<% cfeed = @feeds.where("c_id=?",id)%>
 						<% if !cfeed.empty? %>
 
-						<li> <h4><%= @categories.find(id).name %></h4><div class="callout large">
-							<% cfeed.each do |feed| %>
+						<li> <a href='#'> <h4><%= @categories.find(id).name %></h4>
+							<ul class="menu vertical nested">
+								<div class="callout large">
+									<% cfeed.each do |feed| %>
+									
+									
+									<h4><%= feed.name %><a href="/add?feed_id=<%= feed.id %>"><span style="float:right"><%= image_tag "like.png",size: "32x30" %> </span></a></h4><br>
+									<iframe  id="feedwind_1071464240647833"  width="600" src="http://feed.mikle.com/widget/?rssmikle_url=<%= feed.url %>&rssmikle_frame_width=550&rssmikle_frame_height=400&frame_height_by_article=3&rssmikle_target=_blank&rssmikle_font=Arial%2C%20Helvetica%2C%20sans-serif&rssmikle_font_size=12&rssmikle_border=off&responsive=off&text_align=left&text_align2=left&corner=on&scrollbar=on&autoscroll=on&scrolldirection=up&scrollstep=3&mcspeed=20&sort=Off&rssmikle_title=on&rssmikle_title_bgcolor=%23000000&rssmikle_title_color=%23FFFFFF&rssmikle_item_bgcolor=%23FFFFFF&rssmikle_item_title_length=200&rssmikle_item_title_color=%2333262C&rssmikle_item_border_bottom=on&rssmikle_item_description=title_only&item_link=off&rssmikle_item_description_length=150&rssmikle_item_description_color=%23666666&rssmikle_item_date=gl1&rssmikle_timezone=Etc%2FGMT&datetime_format=%25b%20%25e%2C%20%25Y%20%25l%3A%25M%20%25p&item_description_style=text&item_thumbnail=full&item_thumbnail_selection=auto&article_num=15&rssmikle_item_podcast=off&iframe_id=feedwind_1071464240647833&" scrolling="no" name="rssmikle_frame" marginwidth="0" marginheight="0" vspace="0" hspace="0" frameborder="0"></iframe><div style="font-size:10px; text-align:center; width:600px;"></div>
+									<hr>
+									<br>
+									<% end %>
+								</div>
+							</ul>
+							<% end %>
+							<% end %>
+							<% end %>
 							
-							
-							<h4><%= feed.name %><a href="/add?feed_id=<%= feed.id %>"><span style="float:right"><%= image_tag "like.png",size: "32x30" %> </span></a></h4><br>
-							<iframe  id="feedwind_1071464240647833"  width="600" src="http://feed.mikle.com/widget/?rssmikle_url=<%= feed.url %>&rssmikle_frame_width=550&rssmikle_frame_height=400&frame_height_by_article=3&rssmikle_target=_blank&rssmikle_font=Arial%2C%20Helvetica%2C%20sans-serif&rssmikle_font_size=12&rssmikle_border=off&responsive=off&text_align=left&text_align2=left&corner=on&scrollbar=on&autoscroll=on&scrolldirection=up&scrollstep=3&mcspeed=20&sort=Off&rssmikle_title=on&rssmikle_title_bgcolor=%23000000&rssmikle_title_color=%23FFFFFF&rssmikle_item_bgcolor=%23FFFFFF&rssmikle_item_title_length=200&rssmikle_item_title_color=%2333262C&rssmikle_item_border_bottom=on&rssmikle_item_description=title_only&item_link=off&rssmikle_item_description_length=150&rssmikle_item_description_color=%23666666&rssmikle_item_date=gl1&rssmikle_timezone=Etc%2FGMT&datetime_format=%25b%20%25e%2C%20%25Y%20%25l%3A%25M%20%25p&item_description_style=text&item_thumbnail=full&item_thumbnail_selection=auto&article_num=15&rssmikle_item_podcast=off&iframe_id=feedwind_1071464240647833&" scrolling="no" name="rssmikle_frame" marginwidth="0" marginheight="0" vspace="0" hspace="0" frameborder="0"></iframe><div style="font-size:10px; text-align:center; width:600px;"></div>
-							<hr>
-							<br>
-							<% end %>
-							<% end %>
-							<% end %>
-							<% end %>
-						</div>
+						</a></li>
 					</li>
-				</li>
-			</ul>
-		</li>
-	</ul>	
+				</ul>
+			</li>
+		</ul>	
 
-</div>
+	</div>
 
 
 </body>

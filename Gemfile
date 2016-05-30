@@ -50,6 +50,8 @@ group :development do
   gem 'bootstrap-sass', '3.2.0.0'
 
   gem 'foundation-rails'
+  gem 'foundation-icons-sass-rails'
+  gem "font-awesome-rails"
 
   gem 'sass-rails', '~> 5.0.0'
 end

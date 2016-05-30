@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
+	<% provide(:title, '| Home') %>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
 </head>
@@ -16,7 +16,10 @@
 		
 		<div class="large-3 columns" style="position:fixed">
 			<ul class="vertical menu" data-drilldown style="width: 200px; " >
-				<li><a href="#"><h4>Categories</h4></a>
+
+
+
+				<li><a href="#"><h4><i class="fi-list-thumbnails large" style="color: #2c3e50;">&nbsp;</i>Categories</h4></a>
 					<ul class="menu vertical nested">
 						<li><%= link_to "All", '/?select=0'+ '&lang=' + String(@lang) %></li>
 						<% @categories.each do |category| %>
@@ -25,7 +28,7 @@
 					</ul>
 				</li>
 				<hr>
-				<li><a href="#"><h4>Language</h4></a>
+				<li><a href="#"><h4><i class="fi-filter large" style="color: #2c3e50;">&nbsp;</i>Language</h4></a>
 					<ul class="menu vertical nested">
 						<li><%= link_to "All", '/?select=' + String(@id) + '&lang=all' %></li>
 						<% @languages.each do |language| %>
@@ -34,21 +37,21 @@
 					</ul>
 				</li>
 				<hr>
-				<li><a href="/home/list"><h4>New Feeds</h4></a></li>
+				<li><a href="/home/list"><h4><i class="fi-magnifying-glass large" style="color: #2c3e50;">&nbsp;</i>New Feeds</h4></a></li>
 				<hr>
-				<li><a href="/members/edit"><h4>Change my Password</h4></a></li>
+				<li><a href="/members/edit"><h4><i class="fi-wrench large " style="color: #2c3e50;">&nbsp;</i>Settings</h4></a></li>
 				<hr>
-				<li><a href="/home/logout"><h4>Sign Out</h4></a></li>
+				<li><a href="/home/logout"><h4><i class="fi-power large" style="color: #2c3e50;">&nbsp;</i>Sign Out</h4></a></li>
 			</ul>
 		</div>
-		<div class="large-9 columns">
+		<div class="large-9 columns" style="padding-left: 20rem;">
 			<% if @feeds.empty? %>
 			<h2>Hey! Get some feeds yo!</h2>
 			<% else %>
 			<% @categories.ids.each do |id| %>
 			<% cfeed = @feeds.where("c_id=?",id)%>
 			<% if !cfeed.empty? %>
-			<h2><%= @categories.find(id).name %></h2><div class="callout large">
+			<h2><%= @categories.find(id).name %></h2><div id="<%= id %>" class="callout large">
 			<% cfeed.each do |feed| %>
 			<h2><%= feed.name %> 
 				<a href="/delete?feed_id=<%= feed.id %>">
@@ -56,6 +59,7 @@
 						<%= image_tag "unlike.png",size: "32x30" %> 
 					</span>  
 				</a>
+
 				
 				<% star=@subscribes.where("user_id=? and feed_id=?",current_member.id,feed.id).first %>
 				<% if star.star==0 %>
@@ -71,6 +75,7 @@
 					</span> 
 				</a>
 				<% end %>
+
 				
 			</h2> 
 			<hr>
@@ -81,6 +86,7 @@
 			<script>
 			function hover(element) {
 				element.setAttribute('src', '/assets/favorite.png');
+				
 			}
 			function unhover(element) {
 				element.setAttribute('src', '/assets/star.png');
@@ -88,10 +94,11 @@
 
 
 			</script>
-			<iframe  id="feedwind_1071464240647833"  width="600" src="http://feed.mikle.com/widget/?rssmikle_url=<%= feed.url %>&rssmikle_frame_width=600&rssmikle_frame_height=400&frame_height_by_article=3&rssmikle_target=_blank&rssmikle_font=Arial%2C%20Helvetica%2C%20sans-serif&rssmikle_font_size=12&rssmikle_border=off&responsive=off&text_align=left&text_align2=left&corner=on&scrollbar=on&autoscroll=on&scrolldirection=up&scrollstep=3&mcspeed=20&sort=Off&rssmikle_title=on&rssmikle_title_bgcolor=%23000000&rssmikle_title_color=%23FFFFFF&rssmikle_item_bgcolor=%23FFFFFF&rssmikle_item_title_length=200&rssmikle_item_title_color=%2333262C&rssmikle_item_border_bottom=on&rssmikle_item_description=title_only&item_link=off&rssmikle_item_description_length=150&rssmikle_item_description_color=%23666666&rssmikle_item_date=gl1&rssmikle_timezone=Etc%2FGMT&datetime_format=%25b%20%25e%2C%20%25Y%20%25l%3A%25M%20%25p&item_description_style=text&item_thumbnail=full&item_thumbnail_selection=auto&article_num=15&rssmikle_item_podcast=off&iframe_id=feedwind_1071464240647833&" scrolling="no" name="rssmikle_frame" marginwidth="0" marginheight="0" vspace="0" hspace="0" frameborder="0"></iframe><div style="font-size:10px; text-align:center; width:600px;"></div>
-
+			<iframe  height="400"  width="400" src="http://feed.mikle.com/widget/?rssmikle_url=<%= feed.url %>&rssmikle_frame_width=600&rssmikle_frame_height=600&frame_height_by_article=0&rssmikle_target=_blank&rssmikle_font=Arial%2C%20Helvetica%2C%20sans-serif&rssmikle_font_size=14&rssmikle_border=off&responsive=off&text_align=left&text_align2=left&corner=off&scrollbar=on&autoscroll=on&scrolldirection=up&scrollstep=3&mcspeed=20&sort=Off&rssmikle_title=on&rssmikle_title_bgcolor=%230066FF&rssmikle_title_color=%23FFFFFF&rssmikle_item_bgcolor=%23FFFFFF&rssmikle_item_title_length=55&rssmikle_item_title_color=%230066FF&rssmikle_item_border_bottom=on&rssmikle_item_description=on&item_link=off&rssmikle_item_description_length=150&rssmikle_item_description_color=%23666666&rssmikle_item_date=gl1&rssmikle_timezone=Etc%2FGMT&datetime_format=%25b%20%25e%2C%20%25Y%20%25l%3A%25M%20%25p&item_description_style=text%2Btn&item_thumbnail=full&item_thumbnail_selection=auto&article_num=15&rssmikle_item_podcast=off&" scrolling="no" name="rssmikle_frame" marginwidth="0" marginheight="0" vspace="0" hspace="0" frameborder="0"></iframe>
 			<br>
+			<hr>
 			<% end %>
+
 		</div>
 		<% end %>
 
@@ -99,6 +106,21 @@
 		<% end %>
 
 	</div>
+	<div class="large-3 columns" style="position:fixed;margin-left: 60rem;">
+		<% titles=@feeds.select(:c_id).distinct %>
+		<br>
+		<% titles.each do |title| %>
+		<h4><%= label_tag Category.find_by_id(title.c_id).id,Category.find_by_id(title.c_id).name,style: "font-size: 1.5rem;" ,onmouseover: "scrolly(this);"%></h4><hr>
+		<% end %>
+	</div>
+
+
+	<script>
+	function scrolly(element) {
+		document.getElementById(element.getAttribute('for')).scrollIntoView(true);
+	}
+
+	</script>
 
 </div>
 

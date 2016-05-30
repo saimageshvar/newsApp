@@ -1,102 +1,37 @@
 
-<div class="row">
-  <div class="large-12 large-centered columns">
-    <div class="login-box" >
-      <div class="row">
-        <div class="large-12 columns">
+<head>
+  <% provide(:title, '| Change Password') %>
+</head>
+<body>
 
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-          <%= devise_error_messages! %>
+  <div class="row">
+    <div class="large-12 large-centered columns">
+      <div class="login-box" >
+        <div class="row">
+          <div class="large-12 columns">
 
-          <div class="row">
-            <div class="large-3 columns" style="align-items:center">
-              <p> </p>
-            </div>
-            <div class="large-6 columns">
-              <h2>Login</h2>
-            </div>
-            <div class="large-3 columns" style="align-items:center">
-              <p> </p>
-            </div>
-          </div>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= devise_error_messages! %>
 
-          <div class="row">
-            <div class="large-3 columns" style="align-items:center">
-              <p> </p>
-            </div>
-            <div class="large-6 columns">
-              <%= f.label :email %><br />
-              <%= f.email_field :email, readonly: true , style: "background-color: transparent;" %>
-            </div>
-            <div class="large-3 columns" style="align-items:center">
-              <p> </p>
-            </div>
-          </div>
-
-
-
-          <div class="row">
-            <div class="large-3 columns" style="align-items:center">
-              <p> </p>
-            </div>
-            <div class="large-6 columns">
-              <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-              <%= f.password_field :password, autocomplete: "off", autofocus: true  %>
-            </div>
-            <div class="large-3 columns" style="align-items:center">
-              <p> </p>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="large-3 columns" style="align-items:center">
-              <p> </p>
-            </div>
-            <div class="large-6 columns">
-              <%= f.label :password_confirmation %><br />
-              <%= f.password_field :password_confirmation, autocomplete: "off" %>
-            </div>
-            <div class="large-3 columns" style="align-items:center">
-              <p> </p>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="large-3 columns" style="align-items:center">
-              <p> </p>
-            </div>
-            <div class="large-6 columns">
-              <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-              <%= f.password_field :current_password, autocomplete: "off" %>
-            </div>
-            <div class="large-3 columns" style="align-items:center">
-              <p> </p>
-            </div>
-          </div>
-
-          
-          <div class="row">
-            <div class="large-3 columns" style="align-items:center">
-              <p> </p>
-            </div>
-            <div class="large-6 columns">
-              <%= f.submit "Update" , :class => 'expanded button'%>
-            </div>
-            <div class="large-3 columns" style="align-items:center">
-              <p> </p>
-            </div>
-          </div>
-          <% end %>
-          <div class="row">
-            <div class="large-3 columns" style="align-items:center">
-              <p> </p>
-            </div>
-            <div class="large-6 columns">
+            <div class="row">
+              <div class="large-3 columns" style="align-items:center">
+                <p> </p>
+              </div>
               <div class="large-6 columns">
-                <%= button_to "Cancel my account", { controller: "/registration" , action: "delete" }, data: { confirm: "Are you sure?" },:class => 'alert button',style: "width:-moz-available;" %> </div>
-                <div class="large-6 columns">
-                  <%= link_to "Back", :back ,:class => 'default button',style: "float:right;width: -moz-available;" %>
-                </div>
+                <h2>Change Password</h2>
+              </div>
+              <div class="large-3 columns" style="align-items:center">
+                <p> </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="large-3 columns" style="align-items:center">
+                <p> </p>
+              </div>
+              <div class="large-6 columns">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, readonly: true , style: "background-color: transparent;" %>
               </div>
               <div class="large-3 columns" style="align-items:center">
                 <p> </p>
@@ -104,3 +39,73 @@
             </div>
 
 
+
+            <div class="row">
+              <div class="large-3 columns" style="align-items:center">
+                <p> </p>
+              </div>
+              <div class="large-6 columns">
+                <%= f.label :password %> <br />
+                <%= f.password_field :password, autocomplete: "off", autofocus: true  %>
+              </div>
+              <div class="large-3 columns" style="align-items:center">
+                <p> </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="large-3 columns" style="align-items:center">
+                <p> </p>
+              </div>
+              <div class="large-6 columns">
+                <%= f.label :password_confirmation %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "off" %>
+              </div>
+              <div class="large-3 columns" style="align-items:center">
+                <p> </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="large-3 columns" style="align-items:center">
+                <p> </p>
+              </div>
+              <div class="large-6 columns">
+                <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+                <%= f.password_field :current_password, autocomplete: "off" %>
+              </div>
+              <div class="large-3 columns" style="align-items:center">
+                <p> </p>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="large-3 columns" style="align-items:center">
+                <p> </p>
+              </div>
+              <div class="large-6 columns">
+                <%= f.submit "Update" , :class => 'expanded button'%>
+              </div>
+              <div class="large-3 columns" style="align-items:center">
+                <p> </p>
+              </div>
+            </div>
+            <% end %>
+            <div class="row">
+              <div class="large-3 columns" style="align-items:center">
+                <p> </p>
+              </div>
+              <div class="large-6 columns">
+                <div class="large-6 columns">
+                  <%= button_to "Cancel my account", { controller: "/registration" , action: "delete" }, data: { confirm: "Are you sure?" },:class => 'alert button',style: "width:-moz-available;" %> </div>
+                  <div class="large-6 columns">
+                    <%= link_to "Back", :back ,:class => 'default button',style: "float:right;width: -moz-available;color:#FFFFFF;" %>
+                  </div>
+                </div>
+                <div class="large-3 columns" style="align-items:center">
+                  <p> </p>
+                </div>
+              </div>
+
+            </body>

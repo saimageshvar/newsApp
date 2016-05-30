@@ -106,11 +106,11 @@
 		<% end %>
 
 	</div>
-	<div class="large-3 columns" style="position:fixed;margin-left: 60rem;">
+	<div class="large-3 columns" style="position:fixed;margin-left: 60rem;width: 17%;">
 		<% titles=@feeds.select(:c_id).distinct %>
 		<br>
 		<% titles.each do |title| %>
-		<h4><%= label_tag Category.find_by_id(title.c_id).id,Category.find_by_id(title.c_id).name,style: "font-size: 1.5rem;" ,onmouseover: "scrolly(this);"%></h4><hr>
+		<h4><%= label_tag Category.find_by_id(title.c_id).id,Category.find_by_id(title.c_id).name,style: "font-size: 1.5rem;" ,onmouseover: "scrolly(this);"%><span class="alert label"><%= @feeds.where("c_id=?",title.c_id).size %></span></h4><hr>
 		<% end %>
 	</div>
 

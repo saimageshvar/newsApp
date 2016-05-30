@@ -110,7 +110,7 @@
 		<% titles=@feeds.select(:c_id).distinct %>
 		<br>
 		<% titles.each do |title| %>
-		<h4><%= label_tag Category.find_by_id(title.c_id).id,Category.find_by_id(title.c_id).name,style: "font-size: 1.5rem;" ,onmouseover: "scrolly(this);"%><span class="alert label"><%= @feeds.where("c_id=?",title.c_id).size %></span></h4><hr>
+		<h4><%= label_tag Category.find_by_id(title.c_id).id,Category.find_by_id(title.c_id).name,style: "font-size: 1.5rem;display: initial;" ,onmouseover: "scrolly(this);"%>&nbsp;<span class="alert label" style="padding: 0.1rem .4rem 0.1rem;"><%= @feeds.where("c_id=?",title.c_id).size %></span></h4><hr>
 		<% end %>
 	</div>
 

@@ -117,7 +117,10 @@
 
 	<script>
 	function scrolly(element) {
-		document.getElementById(element.getAttribute('for')).scrollIntoView(true);
+		document.getElementById(element.getAttribute('for')).scrollIntoView({
+    behavior: "smooth", // or "auto" or "instant"
+    block: "start" // or "end"
+});
 	}
 
 	</script>

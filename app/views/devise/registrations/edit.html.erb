@@ -45,9 +45,14 @@
                 <p> </p>
               </div>
               <div class="large-6 columns">
-                <%= f.label :password %> <br />
-                <%= f.password_field :password, autocomplete: "off", autofocus: true , required: true %>
+                <%= f.label :password %>
+
+                <em>(<%= @minimum_password_length=6 %> characters minimum)</em>
+                <br />
+                <%= f.password_field :password, autocomplete: "off", autofocus: true , required: true ,:onkeyup => 'validate_pwd()'%>
               </div>
+              <br><br><br>
+              <i id="excl"  aria-hidden="true"></i>
               <div class="large-3 columns" style="align-items:center">
                 <p> </p>
               </div>
@@ -59,8 +64,58 @@
               </div>
               <div class="large-6 columns">
                 <%= f.label :password_confirmation %><br />
-                <%= f.password_field :password_confirmation, autocomplete: "off" , required: true %>
+                <%= f.password_field :password_confirmation, autocomplete: "off" , required: true,:onkeyup => 'validate_pwd()' %>
               </div>
+              <br><br><br>
+              <i id="tick"  aria-hidden="true"></i>
+
+              <script>
+              function validate_pwd()
+              {
+                var str = document.getElementById("member_password_confirmation").value;
+                var str1 = document.getElementById("member_password").value;
+                if(str1.length < 6)
+                  document.getElementById("excl").setAttribute("class","fa fa-exclamation");
+                else
+                  document.getElementById("excl").setAttribute("class","");
+                if(str.length === 0 || !str.trim())
+                {
+                  document.getElementById("tick").setAttribute("class","");
+                  
+                }
+                else
+                {
+                  if(str1==str && str1.length >= 6)
+                  {
+                    document.getElementById("tick").setAttribute("class","fa fa-check");
+                    document.getElementById("excl").setAttribute("class","");
+
+                  }
+                  else if(str1==str && str1.length < 6)
+                  {
+                    document.getElementById("tick").setAttribute("class","fa fa-exclamation");
+                    document.getElementById("excl").setAttribute("class","fa fa-exclamation");
+                  }
+                  else if(str1!=str && str1.length < 6)
+                  {
+                    document.getElementById("tick").setAttribute("class","fa fa-times");
+                    document.getElementById("excl").setAttribute("class","fa fa-exclamation");
+                  }
+                  else
+                  {
+
+                    document.getElementById("tick").setAttribute("class","fa fa-times");
+                    document.getElementById("excl").setAttribute("class","");
+                  }
+                }
+              }
+              </script>
+
+
+
+
+
+
               <div class="large-3 columns" style="align-items:center">
                 <p> </p>
               </div>

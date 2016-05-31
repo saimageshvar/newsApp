@@ -81,6 +81,8 @@
               <% end %><br />
               <%= f.password_field :password, autocomplete: "off",required: true ,:onkeyup => 'validate_pwd()' %>
             </div>
+            <br><br><br>
+            <i id="excl"  aria-hidden="true"></i>
             <div class="large-3 columns" style="align-items:center">
               <p> </p>
             </div>
@@ -104,16 +106,40 @@
             function validate_pwd()
             {
               var str = document.getElementById("member_password_confirmation").value;
+              var str1 = document.getElementById("member_password").value;
+              if(str1.length < 6)
+                document.getElementById("excl").setAttribute("class","fa fa-exclamation");
+              else
+                document.getElementById("excl").setAttribute("class","");
               if(str.length === 0 || !str.trim())
               {
                 document.getElementById("tick").setAttribute("class","");
+
               }
               else
               {
-                if(document.getElementById("member_password").value==str)
+                if(str1==str && str1.length >= 6)
+                {
                   document.getElementById("tick").setAttribute("class","fa fa-check");
-                else
+                  document.getElementById("excl").setAttribute("class","");
+
+                }
+                else if(str1==str && str1.length < 6)
+                {
+                  document.getElementById("tick").setAttribute("class","fa fa-exclamation");
+                  document.getElementById("excl").setAttribute("class","fa fa-exclamation");
+                }
+                else if(str1!=str && str1.length < 6)
+                {
                   document.getElementById("tick").setAttribute("class","fa fa-times");
+                  document.getElementById("excl").setAttribute("class","fa fa-exclamation");
+                }
+                else
+                {
+
+                  document.getElementById("tick").setAttribute("class","fa fa-times");
+                  document.getElementById("excl").setAttribute("class","");
+                }
               }
             }
             </script>
